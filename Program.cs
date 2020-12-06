@@ -14,6 +14,7 @@ namespace AOC
             await One.Solve(basePath + @"\1.txt");
             await Two.Solve(basePath + @"\2.txt");
             await Three.Solve(basePath + @"\3.txt");
+            await Four.Solve(basePath + @"\4.txt");
         }
     }
 }

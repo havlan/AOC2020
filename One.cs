@@ -5,14 +5,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-public static class One {
+public static class One
+{
 
-    private static async Task<IList<int>> GetData(string fileName){
+    private static async Task<IList<int>> GetData(string fileName)
+    {
         var data = new List<int>();
-        using(var fs = new FileStream(fileName, FileMode.Open)){
-            using (var reader = new StreamReader(fs)){
+        using (var fs = new FileStream(fileName, FileMode.Open))
+        {
+            using (var reader = new StreamReader(fs))
+            {
                 string line;
-                while((line = await reader.ReadLineAsync()) != null){
+                while ((line = await reader.ReadLineAsync()) != null)
+                {
                     data.Add(int.Parse(line));
                 }
             }
@@ -20,11 +25,15 @@ public static class One {
         return data;
     }
 
-    private static async Task<long> TaskOne(string fileName){
+    private static async Task<long> TaskOne(string fileName)
+    {
         var data = await GetData(fileName);
-        foreach(var outer in data){
-            foreach(var inner in data){
-                if (outer + inner == 2020){
+        foreach (var outer in data)
+        {
+            foreach (var inner in data)
+            {
+                if (outer + inner == 2020)
+                {
                     return outer * inner;
                 }
             }
@@ -32,12 +41,17 @@ public static class One {
         return 0;
     }
 
-    private static async Task<long> TaskTwo(string filename){
+    private static async Task<long> TaskTwo(string filename)
+    {
         var data = await GetData(filename);
-        foreach(var x in data){
-            foreach(var y in data){
-                foreach(var z in data){
-                    if (x + y + z == 2020){
+        foreach (var x in data)
+        {
+            foreach (var y in data)
+            {
+                foreach (var z in data)
+                {
+                    if (x + y + z == 2020)
+                    {
                         return x * y * z;
                     }
                 }
@@ -46,7 +60,8 @@ public static class One {
         return 0;
     }
 
-    public static async Task Solve(string filename){
+    public static async Task Solve(string filename)
+    {
         Stopwatch sw1 = Stopwatch.StartNew();
         Console.WriteLine(await TaskOne(filename));
         sw1.Stop();
