@@ -9,7 +9,7 @@ public static class Util<T>
     public static async Task<IList<T>> GetDataAsList(string filename, Func<string, T> converter)
     {
         var data = new List<T>();
-        using (var fs = new FileStream(filename, FileMode.Open))
+        await using (var fs = new FileStream(filename, FileMode.Open))
         {
             using (var reader = new StreamReader(fs))
             {
@@ -21,6 +21,21 @@ public static class Util<T>
             }
         }
         return data;
+    }
+
+    public static async IAsyncEnumerable<T> GetDataEnumerable(string filename, Func<string, T> converter)
+    {
+        await using (var fs = new FileStream(filename, FileMode.Open))
+        {
+            using (var reader = new StreamReader(fs))
+            {
+                string line;
+                while ((line = await reader.ReadLineAsync()) != null)
+                {
+                    yield return converter(line);
+                }
+            }
+        }
     }
 
     public static async Task<string> ReadAllText(string filename)

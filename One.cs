@@ -7,7 +7,6 @@ using System.Diagnostics;
 
 public static class One
 {
-
     private static async Task<IList<int>> GetData(string fileName)
     {
         var data = new List<int>();
