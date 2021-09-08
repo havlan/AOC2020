@@ -18,6 +18,9 @@ namespace AOC
             await Five.Solve(basePath + @"\5.txt");
             await Six.Solve(basePath + @"\6.txt");
             await Seven.Solve(basePath + @"\7.txt");
+            await Eight.Solve(basePath + @"\8.txt");
+
+            Console.WriteLine(int.Parse("-1"));
         }
     }
 }
